@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] float _movementSpeed = 5;
+    [SerializeField] float _jumpForce = 5;
     [SerializeField] Vector2 _moveInput;
 
     private Rigidbody _playerRigidBody;
@@ -28,7 +29,8 @@ public class PlayerController : MonoBehaviour
     }
     public void OnJump()
     {
-
+        if (Mathf.Abs(_playerRigidBody.linearVelocity.y) < 0.01f)
+            _playerRigidBody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
     }
 
     private void HandlePlayerMovement()
