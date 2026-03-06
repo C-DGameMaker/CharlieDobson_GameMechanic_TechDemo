@@ -8,7 +8,8 @@ using UnityEngine;
 public enum GameStates 
 {
     Gameplay,
-    Paused
+    Paused,
+    GameOver
 }
 
 public class GameStateManager : MonoBehaviour
@@ -16,12 +17,8 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] GameStates _currentState;
     [SerializeField] GameStates _previousState;
 
-    private void Start()
-    {
-        
-    }
 
-    private void SetState(GameStates newState)
+    public void SetState(GameStates newState)
     {
         _previousState = _currentState;
         _currentState = newState;
@@ -43,6 +40,11 @@ public class GameStateManager : MonoBehaviour
 
             case GameStates.Paused:
                 ServiceHubManager.Instance.UIManager.ShowPausedUI();
+                Time.timeScale = 0;
+                break;
+
+            case GameStates.GameOver:
+                ServiceHubManager.Instance.UIManager.ShowGameOverUI();
                 Time.timeScale = 0;
                 break;
 

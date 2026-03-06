@@ -27,6 +27,10 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         ServiceHubManager.Instance.GameplayUIManager.SetHealthText();
+        if(_playerHealth.CurrentHealth <= 0)
+        {
+            ServiceHubManager.Instance.GameStateManager.SetState(newState: GameStates.GameOver);
+        }
     }
     private void FixedUpdate()
     {
