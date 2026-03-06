@@ -11,14 +11,16 @@ public class PlayerController : MonoBehaviour
 
 
     private Rigidbody _playerRigidBody;
+    public HealthScript _playerHealth;
 
     private void Awake()
     {
         _playerRigidBody = GetComponent<Rigidbody>();
+        _playerHealth = new HealthScript(5);
 
         if (_playerRigidBody == null) Debug.LogError("RigidBody not founded");
 
-        ServiceHubManager.Instance.CountManager.SetCountText();
+        ServiceHubManager.Instance.GameplayUIManager.SetCountText();
     }
 
     private void FixedUpdate()
@@ -47,8 +49,8 @@ public class PlayerController : MonoBehaviour
         if(other.CompareTag("Coin"))
         {
             ServiceHubManager.Instance.SFXManager.PickUpSound();
-            ServiceHubManager.Instance.CountManager.AddCount();
-            ServiceHubManager.Instance.CountManager.SetCountText();
+            ServiceHubManager.Instance.GameplayUIManager.AddCount();
+            ServiceHubManager.Instance.GameplayUIManager.SetCountText();
             other.gameObject.SetActive(false);
         }
     }

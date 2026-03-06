@@ -10,7 +10,9 @@ public class ServiceHubManager : MonoBehaviour
     [Header("System References")]
     public PlayerController playerController;
     public SFXManager SFXManager;
-    public CoinCountManager CountManager;
+    public GameplayUIManager GameplayUIManager;
+    public UIManager UIManager;
+    public GameStateManager GameStateManager;
 
     private void Awake()
     {
