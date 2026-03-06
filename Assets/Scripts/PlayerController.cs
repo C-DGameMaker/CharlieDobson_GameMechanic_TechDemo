@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _jumpForce = 5;
     [SerializeField] Vector2 _moveInput;
 
+
     private Rigidbody _playerRigidBody;
 
     private void Awake()
@@ -16,6 +17,8 @@ public class PlayerController : MonoBehaviour
         _playerRigidBody = GetComponent<Rigidbody>();
 
         if (_playerRigidBody == null) Debug.LogError("RigidBody not founded");
+
+        ServiceHubManager.Instance.CountManager.SetCountText();
     }
 
     private void FixedUpdate()
@@ -37,5 +40,16 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 move = new Vector3(_moveInput.x, 0, _moveInput.y) * _movementSpeed * Time.deltaTime;
         _playerRigidBody.MovePosition(_playerRigidBody.position + move);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Coin"))
+        {
+            ServiceHubManager.Instance.SFXManager.PickUpSound();
+            ServiceHubManager.Instance.CountManager.AddCount();
+            ServiceHubManager.Instance.CountManager.SetCountText();
+            other.gameObject.SetActive(false);
+        }
     }
 }
