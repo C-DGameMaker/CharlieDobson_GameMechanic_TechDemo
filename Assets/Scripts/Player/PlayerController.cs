@@ -21,8 +21,13 @@ public class PlayerController : MonoBehaviour
         if (_playerRigidBody == null) Debug.LogError("RigidBody not founded");
 
         ServiceHubManager.Instance.GameplayUIManager.SetCountText();
+        ServiceHubManager.Instance.GameplayUIManager.SetHealthText();
     }
 
+    private void Update()
+    {
+        ServiceHubManager.Instance.GameplayUIManager.SetHealthText();
+    }
     private void FixedUpdate()
     {
         HandlePlayerMovement();

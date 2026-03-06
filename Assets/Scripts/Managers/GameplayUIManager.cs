@@ -16,7 +16,7 @@ public class GameplayUIManager : MonoBehaviour
 
     public void SetHealthText()
     {
-        _healthText.text = "Health: " + ServiceHubManager.Instance.playerController._playerHealth.CurrentHealth.ToString() + ServiceHubManager.Instance.playerController._playerHealth.MaxHealth.ToString();
+        _healthText.text = "Health: " + ServiceHubManager.Instance.playerController._playerHealth.CurrentHealth.ToString() + " / "+ ServiceHubManager.Instance.playerController._playerHealth.MaxHealth.ToString();
     }
     public void SetCountText()
     {
