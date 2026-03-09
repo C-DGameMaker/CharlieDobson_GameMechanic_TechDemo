@@ -4,27 +4,30 @@ using UnityEngine;
 
 public class WarpZone : MonoBehaviour
 {
-    [SerializeField] Transform _pointA;
-    [SerializeField] Transform _pointB;
+    [SerializeField] WarpZone _locationOfTeleport;
 
-    [SerializeField] bool _hasTeleported;
+    [SerializeField] public bool HasTeleported;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            _hasTeleported = false;
-            if (other.transform == _pointA && _hasTeleported == false)
+            if (HasTeleported == false)
             {
-                other.transform.position = _pointB.transform.position;
-                _hasTeleported = true;
-            }
-            else if (other.transform == _pointB && _hasTeleported == false)
-            {
-                other.transform.position = _pointA.transform.position;
-                _hasTeleported = true;
+                _locationOfTeleport.HasTeleported = true;
+                other.transform.position = _locationOfTeleport.transform.position;
+                HasTeleported = false;
+
             }
         }
     }
 
-    
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            HasTeleported = false;
+        }
+    }
+
+
 }

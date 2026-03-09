@@ -729,8 +729,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39a06a3a16595f46b98dae4ccbea9a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _doorOpeningSpeed: 10
-  _doorMovingSpeed: 1
+  _doorOpeningSpeed: 50
+  _doorMovingSpeed: 1.5
   _doorTransform: {fileID: 8914048382678197482}
   _doorOpenPosition: {x: -0.9, y: 0, z: 0.9}
   _doorClosedPosition: {x: 0, y: 0, z: 0}
