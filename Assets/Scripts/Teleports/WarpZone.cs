@@ -9,7 +9,7 @@ public class WarpZone : MonoBehaviour
     [SerializeField] public bool HasTeleported;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.CompareTag("Partner"))
         {
             if (HasTeleported == false)
             {
@@ -23,7 +23,7 @@ public class WarpZone : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("Player") || other.CompareTag("Partner"))
         {
             HasTeleported = false;
         }

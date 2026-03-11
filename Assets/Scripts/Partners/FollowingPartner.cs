@@ -8,6 +8,8 @@ public class FollowingPartner : MonoBehaviour
     [SerializeField] float _movementSpeed;
     private Rigidbody _followerRigidbody;
 
+
+
     private void Start()
     {
         if(_player == null)
@@ -20,6 +22,7 @@ public class FollowingPartner : MonoBehaviour
         {
             Debug.Log("WHERE IS THE RIGIDBODY MICHAEL?! WHERE IS IT?! WHAT DID YOU DO TO IT MICHAEL");
         }
+
     }
 
     private void Update()
