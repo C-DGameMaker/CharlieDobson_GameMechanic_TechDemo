@@ -4,9 +4,10 @@ using UnityEngine.Rendering;
 [RequireComponent(typeof(Rigidbody))]
 public class FollowingPartner : MonoBehaviour
 {
-    [SerializeField] GameObject _player;
+    [SerializeField] Transform _player;
     [SerializeField] float _movementSpeed;
     private Rigidbody _followerRigidbody;
+
 
 
 
@@ -27,7 +28,7 @@ public class FollowingPartner : MonoBehaviour
 
     private void Update()
     {
-        Vector3 lookDirection = (_player.transform.position - transform.position).normalized;
+        Vector3 lookDirection = (_player.position - transform.position).normalized;
 
         _followerRigidbody.AddForce(lookDirection * _movementSpeed);
     }
