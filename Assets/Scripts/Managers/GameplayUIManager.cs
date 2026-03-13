@@ -7,7 +7,7 @@ using UnityEngine;
 public class GameplayUIManager : MonoBehaviour
 {
     private int _count;
-    public TextMeshProUGUI _countText;
+    public TextMeshProUGUI _coinText;
     public TextMeshProUGUI _healthText;
     void Start()
     {
@@ -20,7 +20,7 @@ public class GameplayUIManager : MonoBehaviour
     }
     public void SetCountText()
     {
-        _countText.text = "Count: " + _count.ToString();
+        _coinText.text = "Coin: " + _count.ToString();
     }
 
     public void AddCount()
