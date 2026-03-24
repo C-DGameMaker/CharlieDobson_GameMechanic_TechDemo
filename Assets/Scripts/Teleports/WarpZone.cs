@@ -5,6 +5,7 @@ using UnityEngine;
 public class WarpZone : MonoBehaviour
 {
     [SerializeField] WarpZone _locationOfTeleport;
+    [SerializeField] Transform _locationToTeleport;
 
     [SerializeField] public bool HasTeleported;
     private void OnTriggerEnter(Collider other)
