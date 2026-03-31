@@ -12,11 +12,13 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody _playerRigidBody;
     public HealthScript _playerHealth;
+    public bool _canMove;
 
     private void Awake()
     {
         _playerRigidBody = GetComponent<Rigidbody>();
-        _playerHealth = new HealthScript(5);
+        _playerHealth = gameObject.AddComponent<HealthScript>();
+        _canMove = true;
 
         if (_playerRigidBody == null) Debug.LogError("RigidBody not founded");
 
@@ -43,12 +45,14 @@ public class PlayerController : MonoBehaviour
     }
     public void OnJump()
     {
+        if (_canMove == false) return;
         if (Mathf.Abs(_playerRigidBody.linearVelocity.y) < 0.01f)
             _playerRigidBody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
     }
 
     private void HandlePlayerMovement()
     {
+        if (_canMove == false) return;
         Vector3 move = new Vector3(_moveInput.x, 0, _moveInput.y) * _movementSpeed * Time.deltaTime;
         _playerRigidBody.MovePosition(_playerRigidBody.position + move);
     }

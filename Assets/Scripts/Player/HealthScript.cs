@@ -10,10 +10,10 @@ public class HealthScript : MonoBehaviour
     public int MaxHealth { get; private set; }
 
     //Constructor
-    public HealthScript(int maxHealth)
+    public HealthScript()
     {
-        MaxHealth = maxHealth;
-        CurrentHealth = maxHealth;
+        MaxHealth = 5;
+        CurrentHealth = MaxHealth;
     }
 
     //Methods
