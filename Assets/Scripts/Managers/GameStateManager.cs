@@ -7,6 +7,7 @@ using UnityEngine;
 /// 
 public enum GameStates 
 {
+    Init,
     Gameplay,
     Paused,
     GameOver
@@ -33,6 +34,9 @@ public class GameStateManager : MonoBehaviour
             default:
                 break;
 
+            case GameStates.Init:
+                SetState(GameStates.Gameplay);
+                break;
             case GameStates.Gameplay:
                 ServiceHubManager.Instance.UIManager.ShowGameplayUI();
                 Time.timeScale = 1;

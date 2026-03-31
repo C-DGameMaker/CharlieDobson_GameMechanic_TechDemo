@@ -15,7 +15,8 @@ public class WarpZone : MonoBehaviour
             if (HasTeleported == false)
             {
                 _locationOfTeleport.HasTeleported = true;
-                other.transform.position = _locationOfTeleport.transform.position;
+                other.transform.position = _locationToTeleport.position;
+
                 HasTeleported = false;
 
             }
