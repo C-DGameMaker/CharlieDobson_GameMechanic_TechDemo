@@ -7,6 +7,7 @@ public class Shop : MonoBehaviour
 {
     private UIManager _uiManager;
     private PlayerController _playerController;
+    private GameplayUIManager _countManager;
 
     [SerializeField] Transform locationOutOfShop;
     [SerializeField] GameObject shopCamera;
@@ -14,10 +15,14 @@ public class Shop : MonoBehaviour
     [SerializeField] GameObject shopper;
     [SerializeField] TextMeshProUGUI text;
 
+    [SerializeField] int Price1;
+    [SerializeField] int Price2;
+
     private void Start()
     {
         _uiManager = ServiceHubManager.Instance.UIManager;
         _playerController = ServiceHubManager.Instance.playerController;
+        _countManager = ServiceHubManager.Instance.GameplayUIManager;
         shopCamera.SetActive(false);
     }
 
@@ -34,9 +39,22 @@ public class Shop : MonoBehaviour
         }
     }
 
+    public void OnFirstButton()
+    {
+        if(_countManager._count >= Price1)
+        {
+            text.text = "Thank you for purchasing";
+            _playerController._playerHealth.IncreaseMaxHealth(5);
+            _countManager.SubtractCount(10);
+        }
+        else
+        {
+            text.text = "You don't have enough to buy.";
+        }
+    }
+
     public void OnBackButton()
     {
-        StartCoroutine(EndShopping());
         shopper.transform.position = locationOutOfShop.position;
         playerCamera.SetActive(true);
         shopCamera.SetActive(false);
@@ -45,10 +63,6 @@ public class Shop : MonoBehaviour
         _uiManager.ShowGameplayUI();
     }
 
-    IEnumerator EndShopping()
-    {
-        text.text = "Thank you! Come again!";
-        yield return new WaitForSeconds(50f);
-    }
+   
 
 }

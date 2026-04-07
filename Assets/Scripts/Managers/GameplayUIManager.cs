@@ -6,7 +6,7 @@ using UnityEngine;
 /// </summary>
 public class GameplayUIManager : MonoBehaviour
 {
-    private int _count;
+    public int _count;
     public TextMeshProUGUI _coinText;
     public TextMeshProUGUI _healthText;
     void Start()
@@ -26,5 +26,10 @@ public class GameplayUIManager : MonoBehaviour
     public void AddCount()
     {
         _count++;
+    }
+
+    public void SubtractCount(int amount)
+    {
+        _count = _count - amount;
     }
 }

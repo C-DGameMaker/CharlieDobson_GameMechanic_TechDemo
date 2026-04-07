@@ -1,4 +1,5 @@
 using NUnit.Framework.Constraints;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,6 +15,12 @@ public class PlayerController : MonoBehaviour
     public HealthScript _playerHealth;
     public bool _canMove;
 
+    [SerializeField] Color damageColor = Color.red;
+    [SerializeField] float duration = 1f;
+
+    [SerializeField] Renderer objectRenderer;
+    [SerializeField] Color ogColor;
+
     private void Awake()
     {
         _playerRigidBody = GetComponent<Rigidbody>();
@@ -21,6 +28,14 @@ public class PlayerController : MonoBehaviour
         _canMove = true;
 
         if (_playerRigidBody == null) Debug.LogError("RigidBody not founded");
+        if(objectRenderer != null)
+        {
+            ogColor = objectRenderer.material.color;
+        }
+        else
+        {
+            Debug.LogError("No Renderer found on this object");
+        }
 
         ServiceHubManager.Instance.GameplayUIManager.SetCountText();
         ServiceHubManager.Instance.GameplayUIManager.SetHealthText();
@@ -29,6 +44,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         ServiceHubManager.Instance.GameplayUIManager.SetHealthText();
+        ServiceHubManager.Instance.GameplayUIManager.SetCountText();
         if(_playerHealth.CurrentHealth <= 0)
         {
             ServiceHubManager.Instance.GameStateManager.SetState(newState: GameStates.GameOver);
@@ -66,5 +82,26 @@ public class PlayerController : MonoBehaviour
             ServiceHubManager.Instance.GameplayUIManager.SetCountText();
             other.gameObject.SetActive(false);
         }
+    }
+
+    public void TakeDamage(int amount)
+    {
+        _playerHealth.TakeDamage(amount);
+        TriggerColorChange();
+    }
+
+    private void TriggerColorChange()
+    {
+        StopAllCoroutines();
+        StartCoroutine(TakeDamageColor());
+    }
+
+    IEnumerator TakeDamageColor()
+    {
+        objectRenderer.material.color = damageColor;
+
+        yield return new WaitForSeconds(duration);
+
+        objectRenderer.material.color = ogColor;
     }
 }

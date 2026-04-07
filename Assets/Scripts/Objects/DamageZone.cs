@@ -6,7 +6,7 @@ public class DamageZone : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            ServiceHubManager.Instance.playerController._playerHealth.TakeDamage(1);
+            ServiceHubManager.Instance.playerController.TakeDamage(1);
         }
     }
 }
