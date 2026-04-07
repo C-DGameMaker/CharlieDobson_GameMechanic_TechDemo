@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _movementSpeed = 5;
     [SerializeField] float _jumpForce = 5;
     [SerializeField] Vector2 _moveInput;
-
+    public Transform currentRespawnLocation;
 
     private Rigidbody _playerRigidBody;
     public HealthScript _playerHealth;
@@ -82,6 +82,13 @@ public class PlayerController : MonoBehaviour
             ServiceHubManager.Instance.GameplayUIManager.SetCountText();
             other.gameObject.SetActive(false);
         }
+    }
+
+    public void Respawn()
+    {
+        transform.position = currentRespawnLocation.transform.position;
+        ServiceHubManager.Instance.GameStateManager.SetState(newState: GameStates.Gameplay);
+        _playerHealth.RestoreHealth();
     }
 
     public void TakeDamage(int amount)
