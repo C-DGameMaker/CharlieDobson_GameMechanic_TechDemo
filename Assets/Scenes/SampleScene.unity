@@ -1130,6 +1130,9 @@ MonoBehaviour:
   shopItem: {fileID: 11400000, guid: 5e1ace7b792532040b767028e9dbf051, type: 2}
   shopDisplayPrefab: {fileID: 3618107206551610472, guid: 34df9c85b30e3de4f83d04e45e10895d, type: 3}
   parent: {fileID: 1517445153}
+  price: 0
+  coinCount: {fileID: 0}
+  text: {fileID: 684990164}
 --- !u!4 &257054933 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8156962545244582349, guid: 4262b72f4e17b794ba34c5a173a5e0a7, type: 3}
@@ -7112,8 +7115,6 @@ MonoBehaviour:
   playerCamera: {fileID: 330585543}
   shopper: {fileID: 0}
   text: {fileID: 684990164}
-  Price1: 10
-  Price2: 0
 --- !u!1001 &1872468333
 PrefabInstance:
   m_ObjectHideFlags: 0
