@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
 
         ServiceHubManager.Instance.GameplayUIManager.SetCountText();
         ServiceHubManager.Instance.GameplayUIManager.SetHealthText();
+
+        _playerRigidBody.interpolation = RigidbodyInterpolation.Interpolate;
     }
 
     private void Update()
